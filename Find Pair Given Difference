@@ -1,0 +1,19 @@
+class Solution
+{
+    public boolean findPair(int arr[], int size, int n)
+    {
+        //code here.
+        for(int i = 1;  i < size; i++)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                if(arr[i] - arr[j] == n || arr[j] - arr[i] == n)
+                {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+}
