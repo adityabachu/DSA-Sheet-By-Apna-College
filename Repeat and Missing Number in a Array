@@ -1,0 +1,24 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> repeatedNumber(final List<Integer> A) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int sum = 0;
+        int checkSum = 0;
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int i = 1; i <= A.size(); i++) checkSum += i;
+        for(Integer el : A)
+        {
+            hm.put(el, hm.getOrDefault(el, 0) + 1);
+            sum += el;
+        }
+        for(Integer key : hm.keySet())
+        {
+            if(hm.get(key) == 2)
+            {
+                result.add(key);
+            }
+        }
+        result.add(checkSum - sum + result.get(0));
+        return result;
+    }
+}
