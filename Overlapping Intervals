@@ -1,0 +1,33 @@
+class Solution
+{
+    public int[][] overlappedInterval(int[][] Intervals)
+    {
+        // Code here // Code here
+        if(Intervals.length <= 1)
+        {
+            return Intervals;
+        }
+        
+        Arrays.sort(Intervals, Comparator.comparingInt(i -> i[0]));
+        
+        List<int[]> result = new ArrayList<>();
+        
+        int[] newInterval = Intervals[0];
+        result.add(newInterval);
+        
+        for(int[] interval : Intervals)
+        {
+            if(interval[0] <= newInterval[1])
+            {
+                newInterval[1] = Math.max(interval[1], newInterval[1]);
+            }
+            else
+            {
+                newInterval = interval;
+                result.add(newInterval);
+            }
+        }
+        
+        return result.toArray(new int[result.size()][]);
+    }
+}
