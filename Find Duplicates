@@ -1,0 +1,27 @@
+
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        // code here
+        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer> duplicates = new HashSet<>();
+        
+        for(int num : arr)
+        {
+            if(!set.add(num))
+            {
+                duplicates.add(num);
+            }
+        }
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        if(duplicates.isEmpty())
+        {
+            res.add(-1);
+            return res;
+        }
+        res.addAll(duplicates);
+        Collections.sort(res);
+        return res;
+    }
+}
