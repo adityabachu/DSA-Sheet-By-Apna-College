@@ -1,0 +1,37 @@
+class Solution
+{
+    public int helper(String s, int dp[][], int i, int j)
+    {
+        if (i > j)
+        {
+            return 0;
+        }
+        if (i == j)
+        {
+            return 1;
+        }
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        if (s.charAt(i) == s.charAt(j))
+        {
+            return dp[i][j] = (1 + helper(s, dp, i, j - 1) + helper(s, dp, i + 1, j)) % 1000000007;
+        }
+        else
+        {
+            return dp[i][j] = ((helper(s, dp, i, j - 1) + helper(s, dp, i + 1, j) - helper(s, dp, i + 1, j - 1)) % 1000000007 + 1000000007) % 1000000007;
+        }
+    }
+    
+    long countPS(String str)
+    {
+        // Your code here
+        int n = str.length();
+        int dp[][] = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        
+        return helper(str, dp, 0, n - 1);
+    }
+}
